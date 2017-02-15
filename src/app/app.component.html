@@ -1,0 +1,5 @@
+<h3>This is a list of users:</h3>
+<p *ngIf="selectedUserName">{{selectedUserName}} was last selected</p>
+<div class="userlist">
+    <user *ngFor="let user of userList" [user]="user" (userNameEvent)="onUserName($event)"></user>
+</div>
