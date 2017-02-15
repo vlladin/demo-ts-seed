@@ -8,4 +8,5 @@ import {Component, Input} from '@angular/core';
 
 export class AvatarComponent {
     @Input() path: string;
+    public id = Math.random().toString();
 }
