@@ -37,5 +37,10 @@
         </div>
     </div>
     <!--<button type="submit" [disabled]="user.invalid">Sign up</button>-->
-    <button type="submit" >Sign up</button>
+    <button type="submit"
+            [appConfirm]="confirmAction"
+            confirmMessage="Click ok proceed"
+            customButton
+            *delayMe="5000"
+    > Sign up</button>
 </form>

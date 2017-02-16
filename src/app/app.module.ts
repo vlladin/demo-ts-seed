@@ -14,6 +14,9 @@ import {PageNotFoundComponent} from "./not-found/not-found.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpModule, Http, XHRBackend, RequestOptions} from "@angular/http";
 import {HttpInterceptor} from "./common/http.interceptor";
+import {ConfirmDirective} from "./shared/confirm.directive";
+import {CustomButtonDirective} from "./shared/custom-button.directive";
+import {DelayDirective} from "./shared/delay-show.directive";
 
 @NgModule({
     declarations: [
@@ -21,6 +24,7 @@ import {HttpInterceptor} from "./common/http.interceptor";
         AddMemberComponent, UserComponent,
         AvatarComponent, TruncatePipe,
         HeaderComponent, PageNotFoundComponent,
+        ConfirmDirective, CustomButtonDirective, DelayDirective
 
     ],
     imports: [

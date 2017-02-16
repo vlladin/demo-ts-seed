@@ -15,7 +15,7 @@ export class AddMemberComponent {
     constructor(private builder: FormBuilder) {
     }
 
-    ngOnInit(){
+    ngOnInit() {
         // this.user = this.builder.group({
         //     name: ['', [Validators.required, Validators.minLength(2)]],
         //     account: this.builder.group({
@@ -34,15 +34,19 @@ export class AddMemberComponent {
         });
 
         this.user.setValue({
-            name:"alex",
-            account:{
-                email:"lala@example.com",
-                password:"password"
+            name: "alex",
+            account: {
+                email: "lala@example.com",
+                password: "password"
             }
-        })
+        });
 
         this.user.reset();
     }
+
+    confirmAction = () => {
+        console.log("Action confirmed");
+    };
 
     onSubmit(e) {
         e.preventDefault();
