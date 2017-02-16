@@ -1,11 +1,15 @@
 import {Injectable} from "@angular/core";
 import {UserModel} from "./user.model";
+import {Observable} from "rxjs";
+import {Http, Response, Headers, RequestOptions} from "@angular/http";
 
 @Injectable()
 export class UserService {
     public listOfUsers: UserModel[];
 
-    constructor(){
+    constructor(
+        private http: Http
+    ){
         this.initModel();
         console.log("UserService")
     }
@@ -29,4 +33,21 @@ export class UserService {
     getUsers = (): UserModel[] => {
         return this.listOfUsers;
     };
+
+    getHttpUsers(): Observable<any[]> {
+        return this.http.get("http://127.0.0.1:3001/users")
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error || 'Server error'));
+
+    }
+
+    registerHttpUser(body: Object): Observable<any[]> {
+        let bodyString = JSON.stringify(body);
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.post("http://127.0.0.1:3001/user/create", body, options)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw('Server error'));
+    }
 }

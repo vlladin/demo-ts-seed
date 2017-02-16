@@ -18,6 +18,20 @@ export class TeamComponent {
 
     ngOnInit(){
         this.userList = this.usersService.getUsers();
+
+
+
+        this.usersService.getHttpUsers().subscribe(
+            data => console.log(data),
+            err => {
+                console.log(err);
+            });
+
+        this.usersService.registerHttpUser({name:"alex"}).subscribe(
+            data => console.log(data),
+            err => {
+                console.log(err);
+            });
     }
 
     onUserName = (event):void => {

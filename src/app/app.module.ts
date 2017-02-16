@@ -8,10 +8,12 @@ import {UserService} from "./shared/user.service";
 import {HeaderComponent} from "./header/header.component";
 import {TeamComponent} from "./team/team.component";
 import {AddMemberComponent} from "./add-member/add-member.component";
-import {RouterModule} from "@angular/router";
+import {RouterModule, Router} from "@angular/router";
 import {routing} from "./app.routes";
 import {PageNotFoundComponent} from "./not-found/not-found.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {HttpModule, Http, XHRBackend, RequestOptions} from "@angular/http";
+import {HttpInterceptor} from "./common/http.interceptor";
 
 @NgModule({
     declarations: [
@@ -22,9 +24,15 @@ import {ReactiveFormsModule} from "@angular/forms";
 
     ],
     imports: [
-        BrowserModule, ReactiveFormsModule, RouterModule, routing
+        BrowserModule, ReactiveFormsModule, HttpModule, RouterModule, routing
     ],
-    providers: [UserService
+    providers: [UserService,
+       Http, {
+            provide: Http, useFactory: (xhrBackend: XHRBackend, requestOptions:
+                RequestOptions, router: Router) =>
+                new HttpInterceptor(xhrBackend, requestOptions, router),
+            deps: [XHRBackend, RequestOptions, Router]
+        }
     ],
     bootstrap: [AppComponent]
 })
