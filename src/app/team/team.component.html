@@ -1,0 +1,7 @@
+<div class="userlist">
+    <user
+            *ngFor="let user of userList"
+            [user]="user"
+            (userNameEvent)="onUserName($event)">
+    </user>
+</div>

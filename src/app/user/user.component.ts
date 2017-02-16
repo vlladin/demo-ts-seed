@@ -1,16 +1,21 @@
 import {Component, Input, Output, EventEmitter, ViewChild} from '@angular/core';
-import {UserModel} from "../shared/UserModel";
 import {AvatarComponent} from "../avatar/avatar.component";
+import {UserModel} from "../shared/user.model";
+import {TruncatePipe} from "../shared/truncate.pipe";
+import {UserService} from "../shared/user.service";
 
 @Component({
     selector: 'user',
     templateUrl: './user.component.html',
-    styleUrls: ['./user.component.css']
+    styleUrls: ['./user.component.css'],
+    providers: [TruncatePipe]
 })
 
 export class UserComponent {
     @Input() user: UserModel;
     @Output() userNameEvent = new EventEmitter<string>();
+
+    public appTitle: string;
 
     /**
      * Reference to the AvatarComponent child
@@ -24,18 +29,16 @@ export class UserComponent {
 
     private classParam: any;
 
-    constructor() {
+    constructor(
+        private truncatePipe: TruncatePipe,
+        private usersService: UserService
+    ) {
     }
 
     ngOnInit() {
-        this.classParam = {};
-        this.classParam.red = this.user.age > 33;
-        this.classParam.green = this.user.age <= 33;
-
-        console.log("The ID is", this.avatarComponent.id);
-    }
+    };
 
     private outputUserName = () => {
-        this.userNameEvent.emit(this.user.name);
+        this.userNameEvent.emit(this.user.username);
     }
 }

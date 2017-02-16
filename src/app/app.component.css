@@ -1,4 +1,3 @@
-.userlist {
-    display: flex;
-    justify-content: space-around;
+.team-container{
+    margin-top: 40px;
 }

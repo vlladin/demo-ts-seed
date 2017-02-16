@@ -1,4 +1,6 @@
-<avatar path="https://cdn2.iconfinder.com/data/icons/person-gender-hairstyle-clothes-variations/48/Female-Side-comb-O-neck-512.png"></avatar>
-<p>Name: {{user.name}}</p>
-<p [ngClass]="classParam">Age: {{user.age}}</p>
-<button (click)="outputUserName()">Click</button>
+<div class="user-wrapper">
+    <avatar path="https://cdn2.iconfinder.com/data/icons/person-gender-hairstyle-clothes-variations/48/Female-Side-comb-O-neck-512.png"></avatar>
+    <p>Username: {{user.username | truncate: 10: "(...)"}}</p>
+    <p [ngClass]="classParam">Info: {{user.info}}</p>
+    <button (click)="outputUserName()">Click</button>
+</div>
