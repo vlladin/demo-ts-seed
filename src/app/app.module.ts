@@ -11,17 +11,22 @@ import {AddMemberComponent} from "./add-member/add-member.component";
 import {RouterModule} from "@angular/router";
 import {routing} from "./app.routes";
 import {PageNotFoundComponent} from "./not-found/not-found.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
-  declarations: [
-    AppComponent, TeamComponent, AddMemberComponent, UserComponent, AvatarComponent, TruncatePipe, HeaderComponent, PageNotFoundComponent
-  ],
-  imports: [
-    BrowserModule, RouterModule, routing
-  ],
-  providers: [UserService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent, TeamComponent,
+        AddMemberComponent, UserComponent,
+        AvatarComponent, TruncatePipe,
+        HeaderComponent, PageNotFoundComponent,
+
+    ],
+    imports: [
+        BrowserModule, ReactiveFormsModule, RouterModule, routing
+    ],
+    providers: [UserService
+    ],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule {

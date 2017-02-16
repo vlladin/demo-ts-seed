@@ -1,1 +1,41 @@
-This is the work component
+<form novalidate (ngSubmit)="onSubmit($event)" [formGroup]="user">
+    <label>
+        <span>Full name</span>
+        <input type="text" placeholder="Your full name" formControlName="name">
+    </label>
+    <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('required')">
+        Name is required
+    </div>
+    <div class="error" *ngIf="user.get('name').touched && user.get('name').hasError('minlength')">
+        Minimum of 2 characters
+    </div>
+
+    <div formGroupName="account">
+        <label>
+            <span>Email address</span>
+            <input type="email" placeholder="Your email address" formControlName="email">
+        </label>
+        <div class="error"
+             *ngIf="
+             user.get('account').get('email').hasError('required') &&
+             user.get('account').get('email').touched ">
+            Email is required
+        </div>
+        <div class="error"
+             *ngIf="
+             user.get('account').get('email').touched &&
+             user.get('account').get('email').hasError('nomail')">
+            Email is invalid
+        </div>
+        <label>
+            <span>Password</span>
+            <input type="password" placeholder="Enter your password" formControlName="password">
+        </label>
+        <div class="error"
+                *ngIf="user.get('account').get('password').hasError('required') && user.get('account').get('password').touched">
+            Need to enter password
+        </div>
+    </div>
+    <!--<button type="submit" [disabled]="user.invalid">Sign up</button>-->
+    <button type="submit" >Sign up</button>
+</form>
